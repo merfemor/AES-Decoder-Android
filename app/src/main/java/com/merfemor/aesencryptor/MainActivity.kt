@@ -4,9 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.merfemor.aesencryptor.crypto.EncodeAlgorithm
 import com.merfemor.aesencryptor.crypto.OpenSSLAesController
@@ -18,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var resultEditText: EditText
     private lateinit var actionButton: Button
     private lateinit var copyToClipboardButton: Button
+    private lateinit var algorithmChooseSpinner: AdapterView<ArrayAdapter<EncodeAlgorithm>>
 
     private lateinit var aesController: OpenSSLAesController
 
@@ -27,20 +26,30 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.main_activity)
 
+        algorithmChooseSpinner = findViewById(R.id.algorithm_choose_spinner)
         actionButton = findViewById(R.id.action_button)
         inputEditText = findViewById(R.id.input_edit_text)
         passwordEditText = findViewById(R.id.password_edit_text)
         resultEditText = findViewById(R.id.result_edit_text)
         copyToClipboardButton = findViewById(R.id.copy_to_clipboard_button)
 
+        val encodedAlgorithmChooseSpinnerAdapter = ArrayAdapter(
+            this, android.R.layout.simple_spinner_dropdown_item, EncodeAlgorithm.values()
+        )
+        algorithmChooseSpinner.adapter = encodedAlgorithmChooseSpinnerAdapter
+        algorithmChooseSpinner.setSelection(
+            encodedAlgorithmChooseSpinnerAdapter.getPosition(EncodeAlgorithm.AES_256_CBC)
+        )
+
         actionButton.setOnClickListener { onActionButtonClicked() }
         copyToClipboardButton.setOnClickListener { onCopyToClipboardButtonClicked() }
     }
 
     private fun onActionButtonClicked() {
+        resultEditText.setText("")
         val password = passwordEditText.text.toString()
         val textToDecode = inputEditText.text.toString()
-        val algorithm = EncodeAlgorithm.AES_256_CBC
+        val algorithm = algorithmChooseSpinner.selectedItem as EncodeAlgorithm
         val decodedText = aesController.decode(textToDecode, password, algorithm)
         if (decodedText.isRight()) {
             val cause = decodedText.getRightSure().message
