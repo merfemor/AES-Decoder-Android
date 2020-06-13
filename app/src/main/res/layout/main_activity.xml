@@ -1,67 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="4dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <Spinner
+        android:id="@+id/algorithm_choose_spinner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="4dp">
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
 
-        <Spinner
-            android:id="@+id/algorithm_choose_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" />
+    <EditText
+        android:id="@+id/input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|top"
+        android:hint="Text to decode"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:minLines="1" />
 
-        <EditText
-            android:id="@+id/input_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="start|top"
-            android:hint="Text to decode" />
+    <Button
+        android:id="@+id/choose_file_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Read from file..." />
 
-        <Button
-            android:id="@+id/choose_file_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose file..." />
+    <EditText
+        android:id="@+id/password_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:maxLines="1" />
 
-        <EditText
-            android:id="@+id/password_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:maxLines="1" />
+    <Button
+        android:id="@+id/action_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Decode" />
 
-        <Button
-            android:id="@+id/action_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Decode" />
+    <EditText
+        android:id="@+id/result_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="start|top"
+        android:hint="Result"
+        android:inputType="textMultiLine"
+        android:maxLines="6"
+        android:minLines="1" />
 
-        <EditText
-            android:id="@+id/result_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:gravity="start|top"
-            android:hint="Result"
-            android:inputType="none" />
-
-        <Button
-            android:id="@+id/copy_to_clipboard_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Copy to clipboard" />
-    </LinearLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/copy_to_clipboard_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Copy to clipboard" />
+</LinearLayout>
