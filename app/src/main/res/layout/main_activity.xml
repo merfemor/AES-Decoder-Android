@@ -21,6 +21,13 @@
         android:gravity="start|top"
         android:hint="Text to decode" />
 
+    <Button
+        android:id="@+id/choose_file_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose file..."
+        />
+
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_width="match_parent"
