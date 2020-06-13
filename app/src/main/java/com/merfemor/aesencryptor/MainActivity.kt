@@ -1,5 +1,8 @@
 package com.merfemor.aesencryptor
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -14,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var resultEditText: EditText
     private lateinit var actionButton: Button
+    private lateinit var copyToClipboardButton: Button
+
     private lateinit var aesController: OpenSSLAesController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +31,10 @@ class MainActivity : AppCompatActivity() {
         inputEditText = findViewById(R.id.input_edit_text)
         passwordEditText = findViewById(R.id.password_edit_text)
         resultEditText = findViewById(R.id.result_edit_text)
+        copyToClipboardButton = findViewById(R.id.copy_to_clipboard_button)
 
         actionButton.setOnClickListener { onActionButtonClicked() }
+        copyToClipboardButton.setOnClickListener { onCopyToClipboardButtonClicked() }
     }
 
     private fun onActionButtonClicked() {
@@ -44,7 +51,16 @@ class MainActivity : AppCompatActivity() {
         resultEditText.setText(decodedText.getLeftSure())
     }
 
+    private fun onCopyToClipboardButtonClicked() {
+        val text = resultEditText.text
+        val clipData = ClipData.newPlainText(CLIP_DATA_LABEL, text)
+        val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        clipboardManager.setPrimaryClip(clipData)
+        Toast.makeText(this, "Copied successfully", Toast.LENGTH_SHORT).show()
+    }
+
     private companion object {
         private const val TAG = "MainActivity"
+        private const val CLIP_DATA_LABEL = "Decode result"
     }
 }

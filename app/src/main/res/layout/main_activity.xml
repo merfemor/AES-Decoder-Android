@@ -9,6 +9,8 @@
         android:id="@+id/input_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="start|top"
         android:hint="Text to decode" />
 
     <EditText
@@ -16,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:maxLines="1"
         android:hint="Password"
         android:inputType="textPassword" />
 
@@ -30,10 +33,17 @@
         android:layout_marginTop="8dp"
         android:id="@+id/result_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="start|top"
         android:hint="Result"
-        android:inputType="none">
+        android:layout_weight="1"
+        android:enabled="false"
+        android:inputType="none" />
 
-    </EditText>
+    <Button
+        android:id="@+id/copy_to_clipboard_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Copy to clipboard" />
 </LinearLayout>
