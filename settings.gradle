@@ -1,2 +1,2 @@
-rootProject.name='AES Encryptor'
+rootProject.name='OpenSSL AES Decryptor'
 include ':app'
